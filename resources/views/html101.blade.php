@@ -1,134 +1,184 @@
-<!-- file: resources/views/html101.blade.php -->
-<!Doctype html>
+@extends('template.default')
 
-<html>
-    <head>
-        <title>ส่วนหัวของ HTML</title>
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: "Sarabun", sans-serif;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container mt-4">
-    <h1 class="mb-4">Workshop #HTML - FORM</h1>
+@section('content')
+<h3 class="mb-4">Workshop # HTML - FORM</h3>
 
-    <form >
+<form id="myForm">
 
-        <!-- ชื่อ -->
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">ชื่อ &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;</label>
-            
-                <input type="text" class="form-control">
-            </div>
+    <!-- ชื่อ -->
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">ชื่อ</label>
+        <div class="col-sm-9">
+            <input id="fname" class="form-control required">
+            <div class="invalid-feedback">โปรดระบุชื่อ</div>
         </div>
+    </div>
 
-        <!-- สกุล -->
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">สกุล &emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;</label>
-        
-                <input type="text" class="form-control">
-            </div>
+    <!-- สกุล -->
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">สกุล</label>
+        <div class="col-sm-9">
+            <input id="lname" class="form-control required">
+            <div class="invalid-feedback">โปรดระบุนามสกุล</div>
         </div>
+    </div>
 
-        <!-- วันเดือนปีเกิด -->
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">วัน/เดือน/ปีเกิด&emsp;&emsp;&nbsp;&nbsp;&nbsp;</label>
-            
-                <input type="date" class="form-control">
-            </div>
+    <!-- วันเดือนปีเกิด -->
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">วัน/เดือน/ปีเกิด</label>
+        <div class="col-sm-9">
+            <input type="date" id="birth" class="form-control required">
+            <div class="invalid-feedback">โปรดระบุวันเดือนปีเกิด</div>
         </div>
+    </div>
 
-        <!-- อายุ -->
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">อายุ&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
-        
-                <input type="number" class="form-control">
-            </div>
+    <!-- อายุ -->
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">อายุ</label>
+        <div class="col-sm-9">
+            <input type="number" id="age" class="form-control required">
+            <div class="invalid-feedback">โปรดกรอกอายุ</div>
         </div>
+    </div>
 
-        <!-- เพศ -->
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">เพศ&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
-            
-                <label class="me-3"><input type="radio" name="gender"> ชาย</label>
-                <label class="me-3"><input type="radio" name="gender"> หญิง</label>
+
+
+     <!-- เพศ -->
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">เพศ</label>
+        <div class="col-sm-9">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input required-radio" type="radio" name="gender">
+                <label class="form-check-label">ชาย</label>
             </div>
-        </div>
-
-        <!-- รูป -->
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">รูป&emsp; &emsp;&emsp;&nbsp;&emsp;&nbsp;&emsp;&emsp;&emsp;</label>
-                <input type="file" class="form-control">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input required-radio" type="radio" name="gender">
+                <label class="form-check-label">หญิง</label>
             </div>
+            <div class="text-danger d-none" id="genderError">โปรดเลือกเพศ</div>
         </div>
+    </div>
 
-        <!-- ที่อยู่ -->
-        <div class="row mb-3">
-    <label class="col-sm-3 col-form-label">ที่อยู่&emsp; &emsp;&emsp;&nbsp;&emsp; &emsp;&emsp;&nbsp;</label>
-    <form>
-  <textarea rows="4" cols="40"></textarea>
-</form>
-        
+    <!-- รูป -->
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">รูป</label>
+        <div class="col-sm-9">
+            <input type="file" class="form-control required-file">
+        <div class="invalid-feedback">โปรดเลือกรูป</div>
     </div>
 </div>
 
-        <!-- สีที่ชอบ -->
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">สีที่ชอบ&emsp;&nbsp;&emsp;&nbsp;&nbsp;&emsp;&nbsp;&emsp;&emsp;</label>
-            
-                <select class="form-select">
-                    <option>สีแดง</option>
-                    <option>สีน้ำเงิน</option>
-                    <option>สีเหลือง</option>
-                    <option>สีดำ</option>
-                </select>
-            </div>
-        </div>
+    <!-- ที่อยู่ -->
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">ที่อยู่</label>
+        <div class="col-sm-9">
+            <textarea class="form-control required" rows="4"></textarea>
+        <div class="invalid-feedback">โปรดระบุที่อยู่</div>
+    </div>
+</div>
 
-        <!-- แนวเพลง -->
-        <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">แนวเพลงที่ชอบ&emsp;&emsp;&nbsp;&nbsp;</label>
-        
-                <label class="me-3"><input type="checkbox"> เพื่อชีวิต</label>
-                <label class="me-3"><input type="checkbox"> ลูกทุ่ง</label>
-                <label class="me-3"><input type="checkbox"> อื่นๆ</label>
-            </div>
-        </div>
+    <!-- สีที่ชอบ -->
+    <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">สีที่ชอบ</label>
+    <div class="col-sm-9">
+        <select class="form-select required-select">
+            <option value="">-- กรุณาเลือกสี --</option>
+            <option value="red">สีแดง</option>
+            <option value="blue">สีน้ำเงิน</option>
+            <option value="yellow">สีเหลือง</option>
+            <option value="black">สีดำ</option>
+        </select>
+        <div class="invalid-feedback">โปรดเลือกสีที่ชอบ</div>
+    </div>
+</div>
 
-        <!-- ยินยอม -->
-        <div class="row mb-3">
-            <br>
-            <div class="col-sm-3"></div>
-            <div class="col-sm-9">
-                <label><input type="checkbox"> ยินยอมให้เก็บข้อมูล</label>
-               
-            </div>
+    <!-- แนวเพลง -->
+<div class="row mb-3">
+    <label class="col-sm-3 col-form-label">แนวเพลงที่ชอบ</label>
+    <div class="col-sm-9">
+        <div class="form-check">
+            <input class="form-check-input music" type="checkbox">
+            <label class="form-check-label">เพื่อชีวิต</label>
         </div>
-
-        <!-- ปุ่ม -->
-        <div class="row mt-4">
-            <br>
-            <div class="col-sm-6">
-                <button type="reset" class="btn btn-secondary w-100">Reset</button>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                <button type="submit" class="btn btn-primary w-100">Submit</button>
-            </div>
-            
-            </div>
+        <div class="form-check">
+            <input class="form-check-input music" type="checkbox">
+            <label class="form-check-label">ลูกทุ่ง</label>
         </div>
-
-    </form>
+        <div class="form-check">
+            <input class="form-check-input music" type="checkbox">
+            <label class="form-check-label">อื่นๆ</label>
+        </div>
+        <div class="text-danger d-none" id="musicError">โปรดเลือกแนวเพลงที่ชอบ</div>
+    </div>
 </div>
 
 
-                </div>
-            </form>
+    <!-- ยินยอม -->
+    <div class="row mb-4">
+        <div class="col-sm-9 offset-sm-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label">ยินยอมให้เก็บข้อมูล</label>
+            </div>
         </div>
-    </body>
-</html>
+    </div>
+
+    <!-- ปุ่ม -->
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3 d-flex gap-3">
+            <button type="reset" class="btn btn-secondary w-100">Reset</button>
+            <button type="button" class="btn btn-primary w-100" onclick="clickMe()">Submit</button>
+        </div>
+    </div>
+
+</form>
+@endsection
+
+@push('scripts')
+
+<script>
+function clickMe(){
+    let isValid = true
+
+    // เช็ค input ที่ต้องกรอกทั้งหมด
+    document.querySelectorAll('.required').forEach(input => {
+        if(input.value.trim() === ''){
+            input.classList.remove('is-valid')
+            input.classList.add('is-invalid')
+            isValid = false
+        }else{
+            input.classList.remove('is-invalid')
+            input.classList.add('is-valid')
+        }
+    })
+
+    // เช็คเพศ (radio)
+    let genderChecked = document.querySelector('input[name="gender"]:checked')
+    let genderError = document.getElementById('genderError')
+
+    if(!genderChecked){
+        genderError.classList.remove('d-none')
+        isValid = false
+    }else{
+        genderError.classList.add('d-none')
+    }
+
+     // เช็คเพลง (checkbox)
+let musicChecked = document.querySelectorAll('.music:checked').length
+let musicError = document.getElementById('musicError')
+if(musicChecked === 0){
+    musicError.classList.remove('d-none')
+    isValid = false
+}else{
+    musicError.classList.add('d-none')
+}
+
+
+    if(isValid){
+        alert('ข้อมูลครบถ้วนทั้งหมด 🎉')
+        // document.getElementById('myForm').submit()
+    }
+}
+</script>
+@endpush
+
